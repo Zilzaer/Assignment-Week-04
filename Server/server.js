@@ -3,16 +3,16 @@ import cors from "cors";
 import pg from "pg";
 import dotenv from "dotenv";
 
-const app = express();
+const app = express(); //creates an instance of the express application
 app.use(
   cors({
     origin: "https://assignment-week-04.onrender.com",
     methods: ["GET", "POST"],
     credentials: true,
-  })
+  }) // used to configure cors so i can allow requests from my targeted origin using GET and POST methods and credentials
 );
-app.use(express.json());
-dotenv.config();
+app.use(express.json()); //middleware to parse incoming json requests
+dotenv.config(); //loads environment variables from my .env file into process.env to keep my database connection string secure
 
 const dbConnectionstring = process.env.DATABASE_URL;
 
