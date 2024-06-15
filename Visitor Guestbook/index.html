@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Visitor Guestbook</title>
+  </head>
+  <body>
+    <script type="module" src="/main.js"></script>
+
+    <div class="form-container-design">
+      <h1>Leave a message in the guestbook!</h1>
+      <form id="form-design">
+        <label class="label-design" for="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Your username"
+          required
+        />
+        <label class="label-design" for="content">Leave a message below </label>
+        <textarea
+          name="content"
+          id="content"
+          placeholder="Your message"
+          required
+        ></textarea>
+
+        <fieldset class="emojis">
+          <input
+            class="emoji"
+            type="radio"
+            id="Yeehaw"
+            name="reaction"
+            value="🤠"
+            checked
+          />
+          <label for="Yeehaw">🤠</label>
+          <input
+            class="emoji"
+            type="radio"
+            id="goofy"
+            name="reaction"
+            value="🙃"
+          />
+          <label for="goofy">🙃</label>
+          <input
+            class="emoji"
+            type="radio"
+            id="unamused"
+            name="reaction"
+            value="😒"
+          />
+          <label for="unamused">😒</label>
+          <input
+            class="emoji"
+            type="radio"
+            id="whytho"
+            name="reaction"
+            value="😭"
+          />
+          <label for="whytho">😭</label>
+        </fieldset>
+        <input class="submit-style" type="submit" value="send" />
+      </form>
+    </div>
+
+    <header class="message-output">
+      <div id="message-counter"></div>
+      <form id="filter-form">
+        <select name="filter" id="filter>">
+          <option value="all">All</option>
+          <option value="🤠">🤠</option>
+          <option value="🙃">🙃</option>
+          <option value="😒">😒</option>
+          <option value="😭">😭</option>
+        </select>
+        <button id="filter-button">Filter</button>
+      </form>
+    </header>
+    <ul id="message-list"></ul>
+  </body>
+</html>
