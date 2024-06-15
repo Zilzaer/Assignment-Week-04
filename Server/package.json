@@ -1,6 +1,23 @@
 {
+  "name": "visitor-guestbook",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "main": "main.js",
   "dependencies": {
-    "express": "^4.19.2",
-    "type": "module"
-  }
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0",
+    "esbuild": "^0.21.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
