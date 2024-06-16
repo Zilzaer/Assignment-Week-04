@@ -22,11 +22,10 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 
 // Initialize Supabase client using environment variables from Render
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
 // Database connection setup (assuming you're using PostgreSQL)
-const dbConnectionString = process.env.DATABASE_URL; // Retrieve database connection string from environment variables
+const dbConnectionString = process.env.SUPABASE_URL; // Retrieve database connection string from environment variables
 const pool = new pg.Pool({ connectionString: dbConnectionString }); // Create a PostgreSQL connection pool
 
 pool.connect((err, client, release) => {
