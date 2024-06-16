@@ -54,22 +54,25 @@ app.listen(port, () => {
   console.log(`Your server is running on port: ${port}`);
 }); // Start the server on the specified port and log a message to indicate the server is running
 
-app.post("https://assignment-week-04-server.onrender.com", async (req, res) => {
-  console.log("req.body", req.body);
-  const { message } = req.body;
+app.post(
+  "https://assignment-week-04-server.onrender.com/messages",
+  async (req, res) => {
+    console.log("req.body", req.body);
+    const { message } = req.body;
 
-  try {
-    // Insert message into the Supabase database
-    const { data, error } = await supabase
-      .from("messages")
-      .insert([{ message }]);
+    try {
+      // Insert message into the Supabase database
+      const { data, error } = await supabase
+        .from("messages")
+        .insert([{ message }]);
 
-    if (error) {
-      return res.status(500).json({ error: error.message });
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+
+      res.status(200).json({ status: "Message received!", data });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
-
-    res.status(200).json({ status: "Message received!", data });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
   }
-});
+);
