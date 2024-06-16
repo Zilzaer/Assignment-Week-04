@@ -149,7 +149,7 @@ button:focus-visible {
 h1 {
   text-align: center;
 }
-#form-design {
+.form-design {
   padding: 10px;
   margin-bottom: 50px;
   background: #212036;
