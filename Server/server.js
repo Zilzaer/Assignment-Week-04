@@ -1,45 +1,50 @@
+// Import necessary modules
 import express from "express";
 import cors from "cors";
 import pg from "pg";
 import dotenv from "dotenv";
 
-const app = express(); //creates an instance of the express application
+// Create an instance of the express application
+const app = express();
+const port = process.env.PORT || 8080; // Use PORT from environment variables or default to 8080
+
+// Middleware setup
 app.use(
   cors({
     origin: "https://assignment-week-04.onrender.com",
     methods: ["GET", "POST"],
     credentials: true,
-  }) // used to configure cors so i can allow requests from my targeted origin using GET and POST methods and credentials
-);
-app.use(express.json()); //middleware to parse incoming json requests
-dotenv.config(); //loads environment variables from my .env file into process.env to keep my database connection string secure
+  })
+); // Configure CORS to allow requests from specific origin with GET and POST methods and credentials
+app.use(express.json()); // Middleware to parse incoming JSON requests
+dotenv.config(); // Load environment variables from .env file into process.env for secure database connection
 
-const dbConnectionstring = process.env.DATABASE_URL; // retrieves the database connection string from the environment variables
+// Database connection setup
+const dbConnectionString = process.env.DATABASE_URL; // Retrieve database connection string from environment variables
+const pool = new pg.Pool({ connectionString: dbConnectionString }); // Create a PostgreSQL connection pool
 
-export const db = new PointerEvent.pool({
-  connectionstring: dbConnectionstring,
-});
-
-db.connect((err, cleint, release) => {
+pool.connect((err, client, release) => {
   if (err) {
     return console.error("Error acquiring client", err.stack);
   }
   console.log("Database connected successfully");
-  release();
-}); // i am using this log if the database successfully connects or if an error occured
+  release(); // Release the client back to the pool
+}); // Connect to the database and log success or error
 
-const port = 8080;
-app.listen(port, () => {
-  console.log(`Your server is running on port: ${port}`); //starts my server on my specified port and logs a message to indicate the server is running
-});
-
+// Define routes
 app.get("/", (req, res) => {
   res.json({
     message: "There are no bad root route jokes, only bad taste. - Joe 2024",
   });
-}); //used to define a GET route for the root URL ('/'). when the GET request is made to the root URL, the server resons with a JSON message
+}); // Define a GET route for the root URL ('/'), responds with a JSON message
 
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: "Something went wrong!" });
-}); //error handling middleware to catch any errors that occur during the request-response cycle
+}); // Error handling middleware to catch and respond with a 500 status for any unhandled errors during request-response cycle
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Your server is running on port: ${port}`);
+}); // Start the server on the specified port and log a message to indicate the server is running
