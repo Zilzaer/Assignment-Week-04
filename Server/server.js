@@ -54,7 +54,7 @@ app.listen(port, () => {
   console.log(`Your server is running on port: ${port}`);
 }); // Start the server on the specified port and log a message to indicate the server is running
 
-const messageForm = document.querySelector("message-form");
+const messageForm = document.getElementById("message-form");
 
 function handleSubmitMessageForm(event) {
   event.preventDefault();
