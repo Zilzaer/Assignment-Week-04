@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import pg from "pg";
 import { createClient } from "@supabase/supabase-js";
+dotenv.config();
 
 // Create an instance of the express application
 const app = express();
