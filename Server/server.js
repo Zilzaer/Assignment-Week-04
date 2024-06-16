@@ -2,7 +2,6 @@
 import express from "express";
 import cors from "cors";
 import pg from "pg";
-import dotenv from "dotenv";
 import { createClient } from "@supabase/supabase-js";
 
 // Create an instance of the express application
@@ -18,13 +17,13 @@ app.use(
   })
 ); // Configure CORS to allow requests from specific origin with GET and POST methods and credentials
 app.use(express.json()); // Middleware to parse incoming JSON requests
-dotenv.config(); // Load environment variables from .env file into process.env for secure database connection
 
+// Initialize Supabase client using environment variables from Render
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Database connection setup
+// Database connection setup (assuming you're using PostgreSQL)
 const dbConnectionString = process.env.DATABASE_URL; // Retrieve database connection string from environment variables
 const pool = new pg.Pool({ connectionString: dbConnectionString }); // Create a PostgreSQL connection pool
 
