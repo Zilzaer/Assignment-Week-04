@@ -65,6 +65,36 @@
         </fieldset>
         <input class="submit-style" type="submit" value="send" />
       </form>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const messageForm = document.getElementById("message-form");
+
+          function handleSubmitMessageForm(event) {
+            event.preventDefault();
+
+            const formData = new FormData(messageForm);
+            const message = formData.get("message");
+
+            fetch("https://assignment-week-04-server.onrender.com/messages", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ message }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Success:", data);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          }
+
+          messageForm.addEventListener("submit", handleSubmitMessageForm);
+        });
+      </script>
     </div>
 
     <header class="message-output">

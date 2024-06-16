@@ -56,25 +56,6 @@ app.listen(port, () => {
 
 const messageForm = document.getElementById("message-form");
 
-function handleSubmitMessageForm(event) {
-  event.preventDefault();
-
-  const formData = new FormData(messageForm);
-  const message = formData.get("message");
-
-  fetch(
-    "https://assignment-week-04-server.onrender.com/messages",
-
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    }
-  );
-}
-
 app.post("/messages", async (req, res) => {
   console.log("req.body", req.body);
   const { message } = req.body;
