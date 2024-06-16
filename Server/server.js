@@ -73,5 +73,3 @@ app.post("/messages", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-formData.addEventListener("submit", handleSubmitMessageForm);
