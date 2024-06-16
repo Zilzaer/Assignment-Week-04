@@ -54,7 +54,7 @@ app.listen(port, () => {
   console.log(`Your server is running on port: ${port}`);
 }); // Start the server on the specified port and log a message to indicate the server is running
 
-app.post("/messages", async (req, res) => {
+app.post("https://assignment-week-04-server.onrender.com", async (req, res) => {
   console.log("req.body", req.body);
   const { message } = req.body;
 
